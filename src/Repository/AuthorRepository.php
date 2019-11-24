@@ -3,19 +3,40 @@
 namespace App\Repository;
 
 use App\Entity\Author;
+use App\RepositoryInterface\AuthorRepositoryInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 
-/**
- * @method Author|null find($id, $lockMode = null, $lockVersion = null)
- * @method Author|null findOneBy(array $criteria, array $orderBy = null)
- * @method Author[]    findAll()
- * @method Author[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
- */
-class AuthorRepository extends ServiceEntityRepository
+final class AuthorRepository implements AuthorRepositoryInterface
 {
-    public function __construct(ManagerRegistry $registry)
+    private $entityManager;
+    private $objectRepository;
+
+    public function __construct(EntityManagerInterface $entityManager)
     {
-        parent::__construct($registry, Author::class);
+        $this->entityManager = $entityManager;
+        $this->objectRepository = $this->entityManager->getRepository(Author::class);
+    }
+
+    public function find(int $authorId): ?Author
+    {
+        return $this->objectRepository->find($authorId);
+    }
+
+    public function save(Author $author): void
+    {
+        $this->entityManager->persist($author);
+        $this->entityManager->flush();
+    }
+
+    public function findAll(): ?array
+    {
+        return $this->objectRepository->findAll();
+    }
+
+    public function delete(Author $author): void
+    {
+        $this->entityManager->remove($author);
+        $this->entityManager->flush();
     }
 }
