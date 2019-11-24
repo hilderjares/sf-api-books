@@ -6,6 +6,7 @@ use App\Entity\Author;
 use App\RepositoryInterface\AuthorRepositoryInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\ORM\EntityManagerInterface;
 
 final class AuthorRepository implements AuthorRepositoryInterface
 {

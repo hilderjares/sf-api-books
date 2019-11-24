@@ -11,4 +11,9 @@ class DefaultController extends AbstractController
     {
         return new Response('teste');
     }
+
+    public function documentation()
+    {
+        return new Response('doc');
+    }
 }
