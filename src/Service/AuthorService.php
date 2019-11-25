@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Service;
-
 
 use App\Entity\Author;
 use App\Repository\AuthorRepository;
@@ -32,12 +30,12 @@ final class AuthorService
         return $this->authorRepository->findAll();
     }
 
-    public function addAuthor(Author $author): Author
+    public function addAuthor(Author $author): void
     {
         $this->authorRepository->save($author);
     }
 
-    public function deleteArticle(int $authorId): void
+    public function deleteAuthor(int $authorId): void
     {
         $author = $this->authorRepository->find($authorId);
         if (!$author) {

@@ -5,11 +5,11 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 
-class DefaultController extends AbstractController
+class IndexController extends AbstractController
 {
     public function index()
     {
-        return new Response('teste');
+        return new Response('<h1>API somee.social</h1>');
     }
 
     public function documentation()

@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\BookRepository")
@@ -10,6 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Book
 {
     /**
+     * @Groups({"book"})
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
@@ -17,11 +19,13 @@ class Book
     private $id;
 
     /**
+     * @Groups({"book"})
      * @ORM\Column(type="string", length=100)
      */
     private $title;
 
     /**
+     * @Groups({"book"})
      * @ORM\Column(type="date", nullable=true)
      */
     private $launchDate;
@@ -33,12 +37,14 @@ class Book
     private $author;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @Groups({"book"})
+     * @ORM\Column(type="datetime", nullable=true)
      */
     private $updated_at;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @Groups({"book"})
+     * @ORM\Column(type="datetime", nullable=true)
      */
     private $created_at;
 

@@ -8,31 +8,21 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\ORM\EntityManagerInterface;
 
-final class AuthorRepository implements AuthorRepositoryInterface
+final class AuthorRepository extends ServiceEntityRepository implements AuthorRepositoryInterface
 {
     private $entityManager;
-    private $objectRepository;
 
-    public function __construct(EntityManagerInterface $entityManager)
+    public function __construct(EntityManagerInterface $entityManager, ManagerRegistry $registry)
     {
         $this->entityManager = $entityManager;
-        $this->objectRepository = $this->entityManager->getRepository(Author::class);
-    }
 
-    public function find(int $authorId): ?Author
-    {
-        return $this->objectRepository->find($authorId);
+        parent::__construct($registry, Author::class);
     }
 
     public function save(Author $author): void
     {
         $this->entityManager->persist($author);
         $this->entityManager->flush();
-    }
-
-    public function findAll(): ?array
-    {
-        return $this->objectRepository->findAll();
     }
 
     public function delete(Author $author): void
