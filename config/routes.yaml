@@ -1,11 +1,63 @@
 index:
+   methods: GET
    path: /
-   controller: App\Controller\DefaultController::index
+   controller: App\Controller\IndexController::index
 
 doc:
+   methods: GET
    path: /documentation
-   controller: App\Controller\DefaultController::documentation
+   controller: App\Controller\IndexController::documentation
+
+########################################################
 
 list_authors:
+   methods: GET
    path: /author
    controller: App\Controller\AuthorController::index
+
+create_author:
+   methods: POST
+   path: /author
+   controller: App\Controller\AuthorController::create
+
+show_author:
+   methods: GET
+   path: /author/{id}
+   controller: App\Controller\AuthorController::show
+
+delete_author:
+   methods: DELETE
+   path: /author/{id}
+   controller: App\Controller\AuthorController::delete
+
+update_author:
+   methods: PUT
+   path: /author/{id}
+   controller: App\Controller\AuthorController::update
+
+########################################################
+
+list_books:
+   methods: GET
+   path: /book
+   controller: App\Controller\BookController::index
+
+create_book:
+   methods: POST
+   path: /book
+   controller: App\Controller\BookController::create
+
+show_book:
+   methods: GET
+   path: /book/{id}
+   controller: App\Controller\BookController::show
+
+delete_book:
+   methods: DELETE
+   path: /book/{id}
+   controller: App\Controller\BookController::delete
+
+update_book:
+   methods: PUT
+   path: /book/{id}
+   controller: App\Controller\BookController::update
